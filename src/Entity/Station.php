@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Station
      * @ORM\Column(type="string", length=10)
      */
     private $alias;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StationLine", mappedBy="Station")
+     */
+    private $stationLines;
+
+    public function __construct()
+    {
+        $this->stationLines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,37 @@ class Station
     public function setAlias(string $alias): self
     {
         $this->alias = $alias;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StationLine[]
+     */
+    public function getStationLines(): Collection
+    {
+        return $this->stationLines;
+    }
+
+    public function addStationLine(StationLine $stationLine): self
+    {
+        if (!$this->stationLines->contains($stationLine)) {
+            $this->stationLines[] = $stationLine;
+            $stationLine->setStation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStationLine(StationLine $stationLine): self
+    {
+        if ($this->stationLines->contains($stationLine)) {
+            $this->stationLines->removeElement($stationLine);
+            // set the owning side to null (unless already changed)
+            if ($stationLine->getStation() === $this) {
+                $stationLine->setStation(null);
+            }
+        }
 
         return $this;
     }

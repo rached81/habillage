@@ -33,24 +33,27 @@ class Agent
      */
     private $last_name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $date_nais;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $date;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ConstraintRH", mappedBy="agent_id")
      */
     private $constraintRHs;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date_birth;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Dressing", mappedBy="agent")
+     */
+    private $dressings;
+
     public function __construct()
     {
         $this->constraintRHs = new ArrayCollection();
+        $this->dressings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,31 +96,7 @@ class Agent
 
         return $this;
     }
-
-    public function getDateNais(): ?string
-    {
-        return $this->date_nais;
-    }
-
-    public function setDateNais(string $date_nais): self
-    {
-        $this->date_nais = $date_nais;
-
-        return $this;
-    }
-
-    public function getDate(): ?string
-    {
-        return $this->date;
-    }
-
-    public function setDate(string $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection|ConstraintRH[]
      */
@@ -143,6 +122,49 @@ class Agent
             // set the owning side to null (unless already changed)
             if ($constraintRH->getAgentId() === $this) {
                 $constraintRH->setAgentId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDateBirth(): ?\DateTimeInterface
+    {
+        return $this->date_birth;
+    }
+
+    public function setDateBirth(?\DateTimeInterface $date_birth): self
+    {
+        $this->date_birth = $date_birth;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dressing[]
+     */
+    public function getDressings(): Collection
+    {
+        return $this->dressings;
+    }
+
+    public function addDressing(Dressing $dressing): self
+    {
+        if (!$this->dressings->contains($dressing)) {
+            $this->dressings[] = $dressing;
+            $dressing->setAgent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDressing(Dressing $dressing): self
+    {
+        if ($this->dressings->contains($dressing)) {
+            $this->dressings->removeElement($dressing);
+            // set the owning side to null (unless already changed)
+            if ($dressing->getAgent() === $this) {
+                $dressing->setAgent(null);
             }
         }
 

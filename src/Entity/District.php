@@ -43,9 +43,15 @@ class District
      */
     private $lines_by_district;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Group", mappedBy="district")
+     */
+    private $groups;
+
     public function __construct()
     {
         $this->lines_by_district = new ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,6 +132,37 @@ class District
             // set the owning side to null (unless already changed)
             if ($linesByDistrict->getDistrictId() === $this) {
                 $linesByDistrict->setDistrictId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getGroups(): Collection
+    {
+        return $this->groups;
+    }
+
+    public function addGroup(Group $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups[] = $group;
+            $group->setDistrict($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(Group $group): self
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+            // set the owning side to null (unless already changed)
+            if ($group->getDistrict() === $this) {
+                $group->setDistrict(null);
             }
         }
 
