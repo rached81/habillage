@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RollerType{% endblock %}
+
+{% block body %}
+    <h1>RollerType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ roller_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Label_fr</th>
+                <td>{{ roller_type.labelFr }}</td>
+            </tr>
+            <tr>
+                <th>Label_ar</th>
+                <td>{{ roller_type.labelAr }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('roller_type_index') }}">back to list</a>
+
+    <a href="{{ path('roller_type_edit', {'id': roller_type.id}) }}">edit</a>
+
+    {{ include('roller_type/_delete_form.html.twig') }}
+{% endblock %}

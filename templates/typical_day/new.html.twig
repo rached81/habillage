@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypicalDay{% endblock %}
+
+{% block body %}
+    <h1>Create new TypicalDay</h1>
+
+    {{ include('typical_day/_form.html.twig') }}
+
+    <a href="{{ path('typical_day_index') }}">back to list</a>
+{% endblock %}

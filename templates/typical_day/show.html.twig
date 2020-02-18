@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypicalDay{% endblock %}
+
+{% block body %}
+    <h1>TypicalDay</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ typical_day.id }}</td>
+            </tr>
+            <tr>
+                <th>Label_fr</th>
+                <td>{{ typical_day.labelFr }}</td>
+            </tr>
+            <tr>
+                <th>Label_ar</th>
+                <td>{{ typical_day.labelAr }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('typical_day_index') }}">back to list</a>
+
+    <a href="{{ path('typical_day_edit', {'id': typical_day.id}) }}">edit</a>
+
+    {{ include('typical_day/_delete_form.html.twig') }}
+{% endblock %}

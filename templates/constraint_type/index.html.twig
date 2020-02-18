@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ConstraintType index{% endblock %}
+
+{% block body %}
+    <h1>ConstraintType index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label_fr</th>
+                <th>Label_ar</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for constraint_type in constraint_types %}
+            <tr>
+                <td>{{ constraint_type.id }}</td>
+                <td>{{ constraint_type.labelFr }}</td>
+                <td>{{ constraint_type.labelAr }}</td>
+                <td>
+                    <a href="{{ path('constraint_type_show', {'id': constraint_type.id}) }}">show</a>
+                    <a href="{{ path('constraint_type_edit', {'id': constraint_type.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('constraint_type_new') }}">Create new</a>
+{% endblock %}

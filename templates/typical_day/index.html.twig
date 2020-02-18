@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypicalDay index{% endblock %}
+
+{% block body %}
+    <h1>TypicalDay index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label_fr</th>
+                <th>Label_ar</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typical_day in typical_days %}
+            <tr>
+                <td>{{ typical_day.id }}</td>
+                <td>{{ typical_day.labelFr }}</td>
+                <td>{{ typical_day.labelAr }}</td>
+                <td>
+                    <a href="{{ path('typical_day_show', {'id': typical_day.id}) }}">show</a>
+                    <a href="{{ path('typical_day_edit', {'id': typical_day.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('typical_day_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RollerType index{% endblock %}
+
+{% block body %}
+    <h1>RollerType index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label_fr</th>
+                <th>Label_ar</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for roller_type in roller_types %}
+            <tr>
+                <td>{{ roller_type.id }}</td>
+                <td>{{ roller_type.labelFr }}</td>
+                <td>{{ roller_type.labelAr }}</td>
+                <td>
+                    <a href="{{ path('roller_type_show', {'id': roller_type.id}) }}">show</a>
+                    <a href="{{ path('roller_type_edit', {'id': roller_type.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('roller_type_new') }}">Create new</a>
+{% endblock %}

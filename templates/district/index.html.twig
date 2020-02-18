@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}District index{% endblock %}
+
+{% block body %}
+    <h1>District index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label_ar</th>
+                <th>Label_fr</th>
+                <th>Code</th>
+                <th>Alias</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for district in districts %}
+            <tr>
+                <td>{{ district.id }}</td>
+                <td>{{ district.labelAr }}</td>
+                <td>{{ district.labelFr }}</td>
+                <td>{{ district.code }}</td>
+                <td>{{ district.alias }}</td>
+                <td>
+                    <a href="{{ path('district_show', {'id': district.id}) }}">show</a>
+                    <a href="{{ path('district_edit', {'id': district.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('district_new') }}">Create new</a>
+{% endblock %}

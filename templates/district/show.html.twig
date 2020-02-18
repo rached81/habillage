@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}District{% endblock %}
+
+{% block body %}
+    <h1>District</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ district.id }}</td>
+            </tr>
+            <tr>
+                <th>Label_ar</th>
+                <td>{{ district.labelAr }}</td>
+            </tr>
+            <tr>
+                <th>Label_fr</th>
+                <td>{{ district.labelFr }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ district.code }}</td>
+            </tr>
+            <tr>
+                <th>Alias</th>
+                <td>{{ district.alias }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('district_index') }}">back to list</a>
+
+    <a href="{{ path('district_edit', {'id': district.id}) }}">edit</a>
+
+    {{ include('district/_delete_form.html.twig') }}
+{% endblock %}
