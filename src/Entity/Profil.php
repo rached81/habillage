@@ -29,7 +29,7 @@ class Profil
     private $alias;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="profil_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="profil")
      */
     private $users;
 
@@ -79,7 +79,7 @@ class Profil
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setProfilId($this);
+            $user->setProfil($this);
         }
 
         return $this;
@@ -90,8 +90,8 @@ class Profil
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getProfilId() === $this) {
-                $user->setProfilId(null);
+            if ($user->getProfil() === $this) {
+                $user->setProfil(null);
             }
         }
 

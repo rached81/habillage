@@ -31,12 +31,12 @@ class Line
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\District", inversedBy="lines_by_district")
      */
-    private $district_id;
+    private $district;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypeLine")
      */
-    private $type_line_id;
+    private $type_line;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\TourProgram", mappedBy="line")
@@ -89,26 +89,26 @@ class Line
         return $this;
     }
 
-    public function getDistrictId(): ?District
+    public function getDistrict(): ?District
     {
-        return $this->district_id;
+        return $this->district;
     }
 
-    public function setDistrictId(?District $district_id): self
+    public function setDistrict(?District $district): self
     {
-        $this->district_id = $district_id;
+        $this->district = $district;
 
         return $this;
     }
 
-    public function getTypeLineId(): ?TypeLine
+    public function getTypeLine(): ?TypeLine
     {
-        return $this->type_line_id;
+        return $this->type_line;
     }
 
-    public function setTypeLineId(?TypeLine $type_line_id): self
+    public function setTypeLine(?TypeLine $type_line): self
     {
-        $this->type_line_id = $type_line_id;
+        $this->type_line = $type_line;
 
         return $this;
     }

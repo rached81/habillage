@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TourProgram{% endblock %}
+
+{% block body %}
+    <h1>TourProgram</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tour_program.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ tour_program.code }}</td>
+            </tr>
+            <tr>
+                <th>Amplitude</th>
+                <td>{{ tour_program.amplitude ? tour_program.amplitude|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DriverPaidHours</th>
+                <td>{{ tour_program.driverPaidHours }}</td>
+            </tr>
+            <tr>
+                <th>ReceiverPaidHours</th>
+                <td>{{ tour_program.receiverPaidHours }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tour_program_index') }}">back to list</a>
+
+    <a href="{{ path('tour_program_edit', {'id': tour_program.id}) }}">edit</a>
+
+    {{ include('tour_program/_delete_form.html.twig') }}
+{% endblock %}

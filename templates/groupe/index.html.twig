@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Group index{% endblock %}
+{% block title %}Groupe index{% endblock %}
 
 {% block body %}
-    <h1>Group index</h1>
+    <h1>Groupe index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Label_fr</th>
+                <th>LabelFr</th>
                 <th>Label_ar</th>
                 <th>Year</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for group in groups %}
+        {% for groupe in groupes %}
             <tr>
-                <td>{{ group.id }}</td>
-                <td>{{ group.labelFr }}</td>
-                <td>{{ group.labelAr }}</td>
-                <td>{{ group.year }}</td>
+                <td>{{ groupe.id }}</td>
+                <td>{{ groupe.labelFr }}</td>
+                <td>{{ groupe.labelAr }}</td>
+                <td>{{ groupe.year }}</td>
                 <td>
-                    <a href="{{ path('group_show', {'id': group.id}) }}">show</a>
-                    <a href="{{ path('group_edit', {'id': group.id}) }}">edit</a>
+                    <a href="{{ path('groupe_show', {'id': groupe.id}) }}">show</a>
+                    <a href="{{ path('groupe_edit', {'id': groupe.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('group_new') }}">Create new</a>
+    <a href="{{ path('groupe_new') }}">Create new</a>
 {% endblock %}

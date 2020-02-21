@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Line{% endblock %}
+
+{% block body %}
+    <h1>Line</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ line.id }}</td>
+            </tr>
+            <tr>
+                <th>Label_fr</th>
+                <td>{{ line.labelFr }}</td>
+            </tr>
+            <tr>
+                <th>Label_ar</th>
+                <td>{{ line.labelAr }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('line_index') }}">back to list</a>
+
+    <a href="{{ path('line_edit', {'id': line.id}) }}">edit</a>
+
+    {{ include('line/_delete_form.html.twig') }}
+{% endblock %}

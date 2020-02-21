@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TourProgram{% endblock %}
+
+{% block body %}
+    <h1>Create new TourProgram</h1>
+
+    {{ include('tour_program/_form.html.twig') }}
+
+    <a href="{{ path('tour_program_index') }}">back to list</a>
+{% endblock %}

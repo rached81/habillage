@@ -39,7 +39,7 @@ class TourProgram
     private $receiverPaidHours;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Group", inversedBy="tourPrograms")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="tourPrograms")
      * @ORM\JoinColumn(nullable=false)
      */
     private $groupe;
@@ -112,12 +112,12 @@ class TourProgram
         return $this;
     }
 
-    public function getGroupe(): ?Group
+    public function getGroupe(): ?Groupe
     {
         return $this->groupe;
     }
 
-    public function setGroupe(?Group $groupe): self
+    public function setGroupe(?Groupe $groupe): self
     {
         $this->groupe = $groupe;
 

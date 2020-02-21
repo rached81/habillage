@@ -43,15 +43,16 @@ class District
      */
     private $lines_by_district;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Group", mappedBy="district")
+     * @ORM\OneToMany(targetEntity="App\Entity\Groupe", mappedBy="district")
      */
-    private $groups;
+    private $groupes;
 
     public function __construct()
     {
         $this->lines_by_district = new ArrayCollection();
-        $this->groups = new ArrayCollection();
+        $this->groupes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,7 +120,7 @@ class District
     {
         if (!$this->lines_by_district->contains($linesByDistrict)) {
             $this->lines_by_district[] = $linesByDistrict;
-            $linesByDistrict->setDistrictId($this);
+            $linesByDistrict->setDistrict($this);
         }
 
         return $this;
@@ -130,39 +131,41 @@ class District
         if ($this->lines_by_district->contains($linesByDistrict)) {
             $this->lines_by_district->removeElement($linesByDistrict);
             // set the owning side to null (unless already changed)
-            if ($linesByDistrict->getDistrictId() === $this) {
-                $linesByDistrict->setDistrictId(null);
+            if ($linesByDistrict->getDistrict() === $this) {
+                $linesByDistrict->setDistrict(null);
             }
         }
 
         return $this;
     }
 
+
+
     /**
-     * @return Collection|Group[]
+     * @return Collection|Groupe[]
      */
-    public function getGroups(): Collection
+    public function getGroupes(): Collection
     {
-        return $this->groups;
+        return $this->groupes;
     }
 
-    public function addGroup(Group $group): self
+    public function addGroupe(Groupe $groupe): self
     {
-        if (!$this->groups->contains($group)) {
-            $this->groups[] = $group;
-            $group->setDistrict($this);
+        if (!$this->groupes->contains($groupe)) {
+            $this->groupes[] = $groupe;
+            $groupe->setDistrict($this);
         }
 
         return $this;
     }
 
-    public function removeGroup(Group $group): self
+    public function removeGroupe(Groupe $groupe): self
     {
-        if ($this->groups->contains($group)) {
-            $this->groups->removeElement($group);
+        if ($this->groupes->contains($groupe)) {
+            $this->groupes->removeElement($groupe);
             // set the owning side to null (unless already changed)
-            if ($group->getDistrict() === $this) {
-                $group->setDistrict(null);
+            if ($groupe->getDistrict() === $this) {
+                $groupe->setDistrict(null);
             }
         }
 

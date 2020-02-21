@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -34,13 +36,38 @@ class User
     /**
      * @ORM\Column(type="integer")
      */
-    private $district_id;
+    private $district;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $profil_id;
+    private $profil;
+
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    public $confirm_password;
+
+    /**
+     * @return mixed
+     */
+    public function getConfirmPassword()
+    {
+        return $this->confirm_password;
+    }
+
+    /**
+     * @param mixed $confirm_password
+     */
+    public function setConfirmPassword($confirm_password): void
+    {
+        $this->confirm_password = $confirm_password;
+    }
 
     public function getId(): ?int
     {
@@ -83,27 +110,72 @@ class User
         return $this;
     }
 
-    public function getDistrictId(): ?int
+    public function getDistrict(): ?int
     {
-        return $this->district_id;
+        return $this->district;
     }
 
-    public function setDistrictId(int $district_id): self
+    public function setDistrict(int $district): self
     {
-        $this->district_id = $district_id;
+        $this->district = $district;
 
         return $this;
     }
 
-    public function getProfilId(): ?Profil
+    public function getProfil(): ?Profil
     {
-        return $this->profil_id;
+        return $this->profil;
     }
 
-    public function setProfilId(?Profil $profil_id): self
+    public function setProfil(?Profil $profil): self
     {
-        $this->profil_id = $profil_id;
+        $this->profil = $profil;
 
         return $this;
+    }
+
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

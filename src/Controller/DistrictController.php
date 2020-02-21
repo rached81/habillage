@@ -9,12 +9,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 /**
  * @Route("/district")
  */
 class DistrictController extends AbstractController
 {
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    /**
+     * DistrictController constructor.
+     * @param $twig
+     */
+    public function __construct(Environment $twig)
+    {
+        $this->twig = $twig;
+    }
+
     /**
      * @Route("/", name="district_index", methods={"GET"})
      */

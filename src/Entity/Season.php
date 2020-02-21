@@ -44,13 +44,19 @@ class Season
     private $end_date;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Group", mappedBy="season")
+     * @ORM\OneToMany(targetEntity="App\Entity\Groupe", mappedBy="season")
      */
     private $groups;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Groupe", mappedBy="season")
+     */
+    private $groupes;
 
     public function __construct()
     {
         $this->groups = new ArrayCollection();
+        $this->groupes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -118,31 +124,33 @@ class Season
         return $this;
     }
 
+
+
     /**
-     * @return Collection|Group[]
+     * @return Collection|Groupe[]
      */
-    public function getGroups(): Collection
+    public function getGroupes(): Collection
     {
-        return $this->groups;
+        return $this->groupes;
     }
 
-    public function addGroup(Group $group): self
+    public function addGroupe(Groupe $groupe): self
     {
-        if (!$this->groups->contains($group)) {
-            $this->groups[] = $group;
-            $group->setSeason($this);
+        if (!$this->groupes->contains($groupe)) {
+            $this->groupes[] = $groupe;
+            $groupe->setSeason($this);
         }
 
         return $this;
     }
 
-    public function removeGroup(Group $group): self
+    public function removeGroupe(Groupe $groupe): self
     {
-        if ($this->groups->contains($group)) {
-            $this->groups->removeElement($group);
+        if ($this->groupes->contains($groupe)) {
+            $this->groupes->removeElement($groupe);
             // set the owning side to null (unless already changed)
-            if ($group->getSeason() === $this) {
-                $group->setSeason(null);
+            if ($groupe->getSeason() === $this) {
+                $groupe->setSeason(null);
             }
         }
 
