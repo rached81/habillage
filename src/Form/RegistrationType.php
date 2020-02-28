@@ -7,6 +7,7 @@ use App\Entity\Profil;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,6 +21,7 @@ class RegistrationType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('matricule')
+            ->add('email')
             ->add('district', EntityType::class, [
                 'placeholder' => 'Choisir  District',
                 'class' => District::class,
@@ -32,9 +34,19 @@ class RegistrationType extends AbstractType
             ->add('profil', EntityType::class, [
                 'placeholder' => 'Choisir  Profil',
                 'class' => Profil::class,
-                'choice_label' => 'label_fr',
+                'choice_label' => 'label',
                 'expanded' => false,
                 'multiple' => false
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Editeur' => 'ROLE_EDITOR',
+                    'Administrateur' => 'ROLE_ADMIN'
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'label' => 'Rôles'
             ])
         ;
     }

@@ -2,11 +2,93 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Exploitation!{% endblock %}</title>
+        {% block head_css %}
+            <!-- Copy CSS from https://getbootstrap.com/docs/4.1/getting-started/introduction/#css -->
+
+            <!-- Bootstrap -->
+            <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+            <!-- Font Awesome -->
+            <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+            <!-- NProgress -->
+            <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+            <!-- iCheck -->
+            <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+
+            <!-- bootstrap-progressbar -->
+            <link href="{{ asset('assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+            <!-- JQVMap -->
+            <link href="{{ asset('assets/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet"/>
+            <!-- bootstrap-daterangepicker -->
+            <link href="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+            <!-- Custom Theme Style -->
+{#            <link href="../build/css/custom.min.css" rel="stylesheet">#}
+        {% endblock %}
+{#        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">#}
+        {% block stylesheets %}
+        {% endblock %}
     </head>
-    <body>
+    <body  class="nav-md" >
+  
+                    <!-- /sidebar menu -->
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="...">Delete</a>
+    {% endif %}
+    {% if app.user %}
+
+    {% endif %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+{#    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>#}
+{#    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>#}
+    {% block head_js %}
+        <!-- Copy JavaScript from https://getbootstrap.com/docs/4.1/getting-started/introduction/#js -->
+        <!-- jQuery -->
+        <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+        <!-- Bootstrap -->
+        <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+        <!-- FastClick -->
+        <script src="{{ asset('assets/vendors/fastclick/lib/fastclick.js') }}"></script>
+        <!-- NProgress -->
+        <script src="{{ asset('assets/vendors/nprogress/nprogress.js') }}"></script>
+        <!-- Chart.js -->
+        <script src="{{ asset('assets/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+        <!-- gauge.js -->
+        <script src="{{ asset('assets/vendors/gauge.js/dist/gauge.min.js') }}"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="{{ asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+        <!-- iCheck -->
+        <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+        <!-- Skycons -->
+        <script src="{{ asset('assets/vendors/skycons/skycons.js') }}"></script>
+        <!-- Flot -->
+        <script src="{{ asset('assets/vendors/Flot/jquery.flot.js') }}"></script>
+        <script src="{{ asset('assets/vendors/Flot/jquery.flot.pie.js') }}"></script>
+        <script src="{{ asset('assets/vendors/Flot/jquery.flot.time.js') }}"></script>
+        <script src="{{ asset('assets/vendors/Flot/jquery.flot.stack.js') }}"></script>
+        <script src="{{ asset('assets/vendors/Flot/jquery.flot.resize.js') }}"></script>
+        <!-- Flot plugins -->
+        <script src="{{ asset('assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
+        <script src="{{ asset('assets/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/flot.curvedlines/curvedLines.js') }}"></script>
+        <!-- DateJS -->
+        <script src="{{ asset('assets/vendors/DateJS/build/date.js') }}"></script>
+        <!-- JQVMap -->
+        <script src="{{ asset('assets/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+        <script src="{{ asset('assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+        <script src="{{ asset('assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+
+
+        {% endblock %}
+    {% block javascripts %}
+
+        <!-- Custom Theme Scripts -->
+{#        <script src="../build/js/custom.min.js"></script>#}
+        {% endblock %}
     </body>
 </html>

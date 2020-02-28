@@ -3,18 +3,92 @@
 {% block title %}Hello SecurityController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/rached/Bureau/projects/sf4.4/src/Controller/SecurityController.php'|file_link(0) }}">src/Controller/SecurityController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/rached/Bureau/projects/sf4.4/templates/security/index.html.twig'|file_link(0) }}">templates/security/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+        <form class="hljs-formula ">
+           <div class="row flex">
+               <div class="col-md">
+                   <div class="form-group">
+                       <input type="text" class="form-control" placeholder="taper le nom ">
+                   </div>
+               </div>
+               <div class="col-md">
+                   <div class="form-group">
+                       <input type="text" class="form-control" placeholder="taper le nom ">
+                   </div>
+               </div>
+               <div class="col-md">
+                   <div class="form-group">
+                       <input type="text" class="form-control" placeholder="taper le nom ">
+                   </div>
+               </div>
+               <div class="col-md">
+                   <div class="form-group">
+                       <a type="button" class="btn btn-success" href="#">Rechercher</a>
+                   </div>
+               </div>
+           </div>
+           </div>
+
+
+
+        </form>
+
+
+    <div class="row ">
+        <div class="col-2">
+           Nom
+        </div>
+        <div class="col-2">
+            Prenom
+        </div>
+        <div class="col-2">
+            Matricule
+        </div>
+        <div class="col-2">
+            District
+        </div>
+        <div class="col-1">
+            Profil
+        </div>
+        <div class="col-3">
+           Action
+        </div>
+    </div>
+    {% for user in users %}
+        <div class="row mt-1 " style="border-top: 1px solid #121212">
+            <div class="col-2">
+                {{ user.firstName }}
+            </div>
+            <div class="col-2">
+                {{ user.lastName }}
+            </div>
+            <div class="col-2">
+                {{ user.matricule }}
+            </div>
+            <div class="col-2">
+                {{ user.district.labelAr }}
+            </div>
+            <div class="col-1">
+                {# On boucle sur les rôles #}
+                {% for role in user.roles %}
+                    {% if role == "ROLE_USER" %}
+                        Utilisateur
+                    {% elseif role == "ROLE_EDITOR" %}
+                        Editeur
+                    {% elseif role == "ROLE_ADMIN" %}
+                        Administrateur
+                    {% endif %}
+                {% endfor %}
+                {{ user.profil.label }}
+            </div>
+            <div class="col-3">
+                <a href="#" class="btn btn-primary" type="button">Editer</a>
+                <a href="#" class="btn btn-danger" type="button">Supprimer</a>
+            </div>
+        </div>
+    {% endfor %}
+
+
 {% endblock %}

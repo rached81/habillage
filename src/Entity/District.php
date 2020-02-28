@@ -39,10 +39,14 @@ class District
     private $alias;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Line", mappedBy="district_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Line", mappedBy="district")
      */
     private $lines_by_district;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\District", mappedBy="district")
+     */
+    private $users;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Groupe", mappedBy="district")
@@ -53,6 +57,7 @@ class District
     {
         $this->lines_by_district = new ArrayCollection();
         $this->groupes = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -166,6 +171,39 @@ class District
             // set the owning side to null (unless already changed)
             if ($groupe->getDistrict() === $this) {
                 $groupe->setDistrict(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setDistrict($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getDistrict() === $this) {
+                $user->setDistrict(null);
             }
         }
 

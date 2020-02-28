@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
 /**
- * @Route("/district")
+ * @Route("/admin/district")
  */
 class DistrictController extends AbstractController
 {
@@ -31,7 +31,7 @@ class DistrictController extends AbstractController
     }
 
     /**
-     * @Route("/", name="district_index", methods={"GET"})
+     * @Route("/index", name="admin.district.index", methods={"GET"})
      */
     public function index(DistrictRepository $districtRepository): Response
     {
